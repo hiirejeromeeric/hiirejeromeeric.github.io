@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initPortfolio() {
     // Set current year
-    currentYear.textContent = new Date().getFullYear();
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+    }
     
     // Initialize theme
     initTheme();
@@ -37,6 +39,8 @@ function initPortfolio() {
 
 // Theme Management
 function initTheme() {
+    if (!themeToggle) return;
+    
     const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-theme');
@@ -54,15 +58,23 @@ function toggleTheme() {
 }
 
 function updateThemeIcon(theme) {
+    if (!themeToggle) return;
     const icon = themeToggle.querySelector('i');
-    icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    if (icon) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
 }
 
 // Mobile Menu
 function initMobileMenu() {
+    if (!menuToggle || !navLinks) return;
+    
     menuToggle.addEventListener('click', () => {
         const isActive = navLinks.classList.toggle('active');
-        menuToggle.querySelector('i').className = isActive ? 'fas fa-times' : 'fas fa-bars';
+        const icon = menuToggle.querySelector('i');
+        if (icon) {
+            icon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
+        }
         document.body.style.overflow = isActive ? 'hidden' : '';
     });
     
@@ -70,7 +82,10 @@ function initMobileMenu() {
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-bars';
+            }
             document.body.style.overflow = '';
         });
     });
@@ -79,7 +94,10 @@ function initMobileMenu() {
     document.addEventListener('click', (e) => {
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target) && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-bars';
+            }
             document.body.style.overflow = '';
         }
     });
@@ -88,23 +106,25 @@ function initMobileMenu() {
 // Animations
 function initAnimations() {
     // Animate skill bars
-    const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.classList.contains('skill-level')) {
-                    const level = entry.target.getAttribute('data-level');
-                    entry.target.style.width = `${level}%`;
+    if (skillLevels.length > 0) {
+        const observerOptions = {
+            threshold: 0.3,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('skill-level')) {
+                        const level = entry.target.getAttribute('data-level');
+                        entry.target.style.width = `${level}%`;
+                    }
                 }
-            }
-        });
-    }, observerOptions);
-    
-    skillLevels.forEach(skill => observer.observe(skill));
+            });
+        }, observerOptions);
+        
+        skillLevels.forEach(skill => observer.observe(skill));
+    }
     
     // Float elements animation
     const floatElements = document.querySelectorAll('.float-element');
@@ -115,6 +135,8 @@ function initAnimations() {
 
 // Scroll Events
 function initScrollEvents() {
+    if (!backToTop) return;
+    
     // Back to top button
     window.addEventListener('scroll', () => {
         backToTop.classList.toggle('visible', window.scrollY > 500);
@@ -134,9 +156,12 @@ function initScrollEvents() {
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 // Close mobile menu if open
-                if (navLinks.classList.contains('active')) {
+                if (navLinks && navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    menuToggle.querySelector('i').className = 'fas fa-bars';
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.className = 'fas fa-bars';
+                    }
                     document.body.style.overflow = '';
                 }
                 
@@ -180,7 +205,7 @@ function updateActiveNavLink() {
     });
 }
 
-// Form Handling
+// Form Handling with Formspree
 function initFormHandling() {
     if (!contactForm) return;
     
@@ -201,28 +226,39 @@ function initFormHandling() {
         submitBtn.disabled = true;
         
         try {
-            // In a real application, you would send this data to a server
-            // For now, we'll simulate a successful submission
-            await simulateFormSubmission(data);
+            // Send to Formspree
+            const response = await fetch(contactForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             
-            // Show success message
-            showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            const result = await response.json();
             
-            // Reset form
-            contactForm.reset();
-            
-            // Send to Google Analytics or other tracking
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'contact_form_submit', {
-                    'event_category': 'Contact',
-                    'event_label': 'Portfolio Contact Form'
-                });
+            if (response.ok) {
+                // Success
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+                contactForm.reset();
+                
+                // Track successful submission (if you have analytics)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'contact_form_submit', {
+                        'event_category': 'Contact',
+                        'event_label': 'Portfolio Contact Form'
+                    });
+                }
+            } else {
+                // Formspree error
+                const error = result.errors ? result.errors.map(e => e.message).join(', ') : 'Something went wrong.';
+                throw new Error(error);
             }
             
         } catch (error) {
             // Show error message
-            showNotification('Failed to send message. Please try again.', 'error');
             console.error('Form submission error:', error);
+            showNotification('Failed to send message. Please try again or email me directly at hiirecode@gmail.com', 'error');
         } finally {
             // Restore button state
             submitBtn.innerHTML = originalText;
@@ -248,15 +284,7 @@ function validateForm(data) {
     return true;
 }
 
-function simulateFormSubmission(data) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            console.log('Form data:', data);
-            resolve({ success: true });
-        }, 1500);
-    });
-}
-
+// Notification System
 function showNotification(message, type) {
     // Remove existing notifications
     const existingNotification = document.querySelector('.notification');
@@ -309,7 +337,7 @@ function showNotification(message, type) {
     
     document.body.appendChild(notification);
     
-    // Add keyframes for animation
+    // Add keyframes for animation if they don't exist
     if (!document.querySelector('#notification-styles')) {
         const style = document.createElement('style');
         style.id = 'notification-styles';
@@ -380,7 +408,7 @@ function initTouchEvents() {
         });
     });
     
-    // Add ripple animation styles
+    // Add ripple animation styles if they don't exist
     if (!document.querySelector('#ripple-styles')) {
         const style = document.createElement('style');
         style.id = 'ripple-styles';
@@ -406,6 +434,9 @@ document.querySelectorAll('a[download]').forEach(link => {
                 'event_label': 'Download CV'
             });
         }
+        
+        // Show notification
+        showNotification('Downloading CV...', 'success');
     });
 });
 
@@ -415,15 +446,18 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
         // Close mobile menu on resize to desktop
-        if (window.innerWidth >= 768 && navLinks.classList.contains('active')) {
+        if (window.innerWidth >= 768 && navLinks && navLinks.classList.contains('active')) {
             navLinks.classList.remove('active');
-            menuToggle.querySelector('i').className = 'fas fa-bars';
+            const icon = menuToggle.querySelector('i');
+            if (icon) {
+                icon.className = 'fas fa-bars';
+            }
             document.body.style.overflow = '';
         }
     }, 250);
 });
 
-// PWA Support Check
+// PWA Support Check (Optional)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js').catch(error => {
@@ -440,3 +474,54 @@ window.addEventListener('online', () => {
 window.addEventListener('offline', () => {
     showNotification('You are currently offline. Some features may not work.', 'error');
 });
+
+// Add active class to current nav link on page load
+window.addEventListener('load', () => {
+    updateActiveNavLink();
+});
+
+// Handle form reset if needed
+if (contactForm) {
+    contactForm.addEventListener('reset', () => {
+        showNotification('Form has been cleared.', 'info');
+    });
+}
+
+// Add info notification type
+function showInfoNotification(message) {
+    showNotification(message, 'info');
+}
+
+// Extend showNotification to support info type
+const originalShowNotification = showNotification;
+showNotification = function(message, type) {
+    if (type === 'info') {
+        type = 'success'; // Use success styling but we'll add a note
+        message = 'ℹ️ ' + message;
+    }
+    originalShowNotification(message, type);
+};
+
+// Smooth scroll to top with animation
+function scrollToTop() {
+    const scrollDuration = 300;
+    const scrollStep = -window.scrollY / (scrollDuration / 15);
+    
+    const scrollInterval = setInterval(() => {
+        if (window.scrollY !== 0) {
+            window.scrollBy(0, scrollStep);
+        } else {
+            clearInterval(scrollInterval);
+        }
+    }, 15);
+}
+
+// Export functions for debugging (optional)
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initPortfolio,
+        toggleTheme,
+        showNotification,
+        scrollToTop
+    };
+}
