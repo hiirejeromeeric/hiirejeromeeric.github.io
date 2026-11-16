@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#7c3aed">
     <title>Your Voice Matters | Purple Skills Klinic Student Survey</title>
     <meta name="description" content="Anonymous 5–7 minute survey about your training experience at Purple Skills Klinic. Help improve the programmes.">
     <meta property="og:title" content="Your Voice Matters | Purple Skills Klinic Survey">
@@ -50,7 +51,7 @@
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="badge"><i class="fas fa-graduation-cap"></i> Data Analysis Class Project</span>
+                <span class="badge"><i class="fas fa-fire"></i> Star Fires · Data Analysis Project</span>
                 <h1 class="hero-title">Your training.<br>Your voice.<br><span class="highlight typed-wrap"><span id="typed"></span><span class="caret"></span></span></h1>
                 <p class="hero-description">
                     We are Data Analysis students gathering feedback on your <strong>training experience</strong>,
@@ -61,7 +62,6 @@
                     <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" class="btn btn-primary btn-lg pulse" data-survey data-confetti>
                         <i class="fas fa-rocket"></i> Start the Survey
                     </a>
-                    <button class="btn btn-secondary btn-lg" id="openModal"><i class="fas fa-window-maximize"></i> Fill it here</button>
                 </div>
                 <div class="chips">
                     <span class="chip"><i class="fas fa-clock"></i> 5–7 min</span>
@@ -192,28 +192,11 @@
 
     <footer class="footer">
         <div class="container">
-            <p>Built with <i class="fas fa-heart"></i> by <strong>Jerome Eric</strong> and the <span id="groupName">Data Analysis</span> team</p>
+            <p>Built with <i class="fas fa-heart"></i> by <strong id="groupName">Star Fires</strong></p>
+            <p class="members">Jovia · Joel · Jerome</p>
             <p class="small">Survey hosted on KoboToolbox · Your answers are anonymous and voluntary · &copy; <span id="currentYear"></span></p>
-            <a href="https://github.com/hiirejeromeeric" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-github"></i> See more of my work</a>
         </div>
     </footer>
-
-    <!-- Modal with embedded survey -->
-    <div class="modal" id="modal" aria-hidden="true">
-        <div class="modal-box" role="dialog" aria-label="Survey">
-            <div class="modal-head">
-                <strong>Purple Skills Klinic: Student Survey</strong>
-                <button class="icon-btn" id="closeModal" aria-label="Close"><i class="fas fa-times"></i></button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loading"><i class="fas fa-spinner fa-spin"></i> Loading survey…</div>
-                <iframe id="surveyFrame" title="Student Experience Survey" loading="lazy"></iframe>
-            </div>
-            <div class="modal-foot">
-                Not loading? <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" data-survey>Open it in a new tab</a>
-            </div>
-        </div>
-    </div>
 
     <canvas id="confetti" aria-hidden="true"></canvas>
     <script src="script.js"></script>

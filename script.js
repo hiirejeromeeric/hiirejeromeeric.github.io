@@ -1,8 +1,8 @@
 /* ============ CONFIG: edit these ============ */
 const CONFIG = {
     surveyUrl: 'https://ee.kobotoolbox.org/x/TGmYaz72',
-    groupName: 'Data Analysis',          // e.g. 'Group 4'
-    shareText: 'Hey! 5 minutes please? Fill in this anonymous Purple Skills Klinic student survey, it really helps:',
+    groupName: 'Star Fires',
+    shareText: 'Hey! Star Fires group here. 5 minutes please? Fill in this anonymous Purple Skills Klinic student survey, it really helps:',
     typedWords: ['Be heard.', 'Shape change.', 'Take 5 minutes.', 'Make it better.']
 };
 /* ============================================= */
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('#groupName').textContent = CONFIG.groupName;
     $$('[data-survey]').forEach(a => a.href = CONFIG.surveyUrl);
     initTheme(); initTyped(); initReveal(); initCounters(); initScroll();
-    initMood(); initShare(); initModal(); initTilt(); initCursor(); initConfetti(); initBackground();
+    initMood(); initShare(); initTilt(); initCursor(); initConfetti(); initBackground();
 });
 
 /* Theme */
@@ -114,24 +114,6 @@ function initShare() {
         catch (e) { label.textContent = 'Press Ctrl+C'; prompt('Copy this link:', url); }
         setTimeout(() => label.textContent = 'Copy link', 2000);
     });
-}
-
-/* Modal with embedded survey */
-function initModal() {
-    const modal = $('#modal'), frame = $('#surveyFrame');
-    const open = () => {
-        if (!frame.src) frame.src = CONFIG.surveyUrl;
-        modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    };
-    const close = () => {
-        modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    };
-    $('#openModal').addEventListener('click', open);
-    $('#closeModal').addEventListener('click', close);
-    modal.addEventListener('click', e => { if (e.target === modal) close(); });
-    addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 }
 
 /* 3D tilt on cards and hero blob */
