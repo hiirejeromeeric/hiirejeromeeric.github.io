@@ -3,472 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerome Eric | IT Support & Web Developer</title>
+    <title>Your Voice Matters | Purple Skills Klinic Student Survey</title>
+    <meta name="description" content="Anonymous 5–7 minute survey about your training experience at Purple Skills Klinic. Help improve the programmes.">
+    <meta property="og:title" content="Your Voice Matters | Purple Skills Klinic Survey">
+    <meta property="og:description" content="5–7 minutes. Anonymous. No wrong answers. Tell us about your training.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <canvas id="bg" aria-hidden="true"></canvas>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">Jerome<span>Eric</span></a>
-            <div class="nav-links">
-                <a href="#home"><i class="fas fa-home"></i> Home</a>
-                <a href="#about"><i class="fas fa-user"></i> About</a>
-                <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-                <a href="#services"><i class="fas fa-cogs"></i> Services</a>
-                <a href="#projects"><i class="fas fa-briefcase"></i> Projects</a>
-                <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-                <button class="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </button>
+            <a href="#home" class="logo">Student<span>Voice</span></a>
+            <div class="nav-actions">
+                <button class="icon-btn" id="shareBtnNav" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                <button class="icon-btn theme-toggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+                <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-survey>
+                    <i class="fas fa-pen"></i> Take Survey
+                </a>
             </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Moving ticker -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span><i class="fas fa-star"></i> Be heard</span>
+            <span><i class="fas fa-user-secret"></i> 100% anonymous</span>
+            <span><i class="fas fa-clock"></i> Only 5–7 minutes</span>
+            <span><i class="fas fa-check-double"></i> No wrong answers</span>
+            <span><i class="fas fa-chart-line"></i> Help shape better training</span>
+            <span><i class="fas fa-star"></i> Be heard</span>
+            <span><i class="fas fa-user-secret"></i> 100% anonymous</span>
+            <span><i class="fas fa-clock"></i> Only 5–7 minutes</span>
+            <span><i class="fas fa-check-double"></i> No wrong answers</span>
+            <span><i class="fas fa-chart-line"></i> Help shape better training</span>
+        </div>
+    </div>
+
+    <!-- Hero -->
     <section id="home" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h3 class="greeting">Hello, I'm</h3>
-                <h1 class="hero-title">Jerome <span class="highlight">Eric</span></h1>
-                <h2 class="hero-subtitle">IT Support Specialist & Web Developer</h2>
+                <span class="badge"><i class="fas fa-graduation-cap"></i> Data Analysis Class Project</span>
+                <h1 class="hero-title">Your training.<br>Your voice.<br><span class="highlight typed-wrap"><span id="typed"></span><span class="caret"></span></span></h1>
                 <p class="hero-description">
-                    Expert in troubleshooting, system administration, and creating efficient digital solutions. 
-                    Bridging the gap between technology and user experience.
+                    We are Data Analysis students gathering feedback on your <strong>training experience</strong>,
+                    <strong>trainers</strong> and <strong>challenges</strong> to help improve Purple Skills Klinic’s
+                    programmes. There are no right or wrong answers, just your honest feedback.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
-                    <a href="#projects" class="btn btn-secondary"><i class="fas fa-eye"></i> View Work</a>
-                    <a href="cv/Jerome-Eric-CV.pdf" class="btn btn-outline" download="Jerome-Eric-CV.pdf">
-                        <i class="fas fa-download"></i> Download CV
+                    <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" class="btn btn-primary btn-lg pulse" data-survey data-confetti>
+                        <i class="fas fa-rocket"></i> Start the Survey
                     </a>
+                    <button class="btn btn-secondary btn-lg" id="openModal"><i class="fas fa-window-maximize"></i> Fill it here</button>
                 </div>
-                <div class="social-links">
-                    <a href="https://github.com/hiirejeromeeric" target="_blank" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="#" target="_blank" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" target="_blank" aria-label="CodePen">
-                        <i class="fab fa-codepen"></i>
-                    </a>
+                <div class="chips">
+                    <span class="chip"><i class="fas fa-clock"></i> 5–7 min</span>
+                    <span class="chip"><i class="fas fa-user-secret"></i> Anonymous</span>
+                    <span class="chip"><i class="fas fa-hand-peace"></i> Voluntary</span>
                 </div>
             </div>
+
             <div class="hero-image">
-                <div class="image-wrapper">
+                <div class="image-wrapper" id="tiltHero">
                     <div class="profile-image">
-                        <i class="fas fa-laptop-code"></i>
+                        <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+                            <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+                            <circle class="ring-fg" cx="60" cy="60" r="52"></circle>
+                        </svg>
+                        <div class="ring-text"><strong>5–7</strong><span>minutes</span></div>
                     </div>
                     <div class="floating-elements">
-                        <div class="float-element it-support"><i class="fas fa-headset"></i> IT Support</div>
-                        <div class="float-element web-dev"><i class="fas fa-code"></i> Web Dev</div>
-                        <div class="float-element troubleshooting"><i class="fas fa-tools"></i> Troubleshooting</div>
+                        <div class="float-element f1"><i class="fas fa-chalkboard-teacher"></i> Trainers</div>
+                        <div class="float-element f2"><i class="fas fa-lightbulb"></i> Experience</div>
+                        <div class="float-element f3"><i class="fas fa-mountain"></i> Challenges</div>
                     </div>
+                    <div class="mini-bars" aria-hidden="true">
+                        <i style="--h:40%;--d:0s"></i><i style="--h:70%;--d:.2s"></i><i style="--h:55%;--d:.4s"></i>
+                        <i style="--h:90%;--d:.6s"></i><i style="--h:65%;--d:.8s"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#warmup" class="scroll-hint" aria-label="Scroll down"><i class="fas fa-chevron-down"></i></a>
+    </section>
+
+    <!-- Warm-up mood meter -->
+    <section id="warmup" class="section warmup">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2 class="section-title">Quick <span class="highlight">warm-up</span></h2>
+                <p class="section-subtitle">One tap. How has your training been so far?</p>
+            </div>
+            <div class="mood reveal">
+                <div class="mood-row" id="moodRow">
+                    <button class="mood-btn" data-v="1" aria-label="Rough"><span>😞</span><small>Rough</small></button>
+                    <button class="mood-btn" data-v="2" aria-label="Meh"><span>😕</span><small>Meh</small></button>
+                    <button class="mood-btn" data-v="3" aria-label="Okay"><span>😐</span><small>Okay</small></button>
+                    <button class="mood-btn" data-v="4" aria-label="Good"><span>🙂</span><small>Good</small></button>
+                    <button class="mood-btn" data-v="5" aria-label="Great"><span>🤩</span><small>Great</small></button>
+                </div>
+                <div class="mood-result" id="moodResult" aria-live="polite">
+                    <p id="moodText"></p>
+                    <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" class="btn btn-primary" data-survey data-confetti>
+                        <i class="fas fa-comment-dots"></i> Tell us why in the survey
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- What we ask -->
     <section id="about" class="section about">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">About <span class="highlight">Me</span></h2>
-                <p class="section-subtitle">Get to know me better</p>
+            <div class="section-header reveal">
+                <h2 class="section-title">What we’ll <span class="highlight">ask</span></h2>
+                <p class="section-subtitle">Three simple areas, nothing complicated</p>
             </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3><i class="fas fa-user-tie"></i> Professional IT Support & Developer</h3>
-                    <p>
-                        With extensive experience in IT support and web development, I provide comprehensive 
-                        technical solutions that enhance productivity and user experience. I specialize in 
-                        troubleshooting complex issues, system administration, and creating efficient digital tools.
-                    </p>
-                    <p>
-                        My approach combines technical expertise with excellent communication skills, 
-                        ensuring that technology serves people effectively rather than complicating their work.
-                    </p>
-                    <div class="cv-section">
-                        <h4><i class="fas fa-file-pdf"></i> My Resume</h4>
-                        <p>Download my detailed CV to learn more about my experience and qualifications.</p>
-                        <div class="cv-actions">
-                            <a href="cv/Jerome-Eric-CV.pdf" class="btn btn-primary" download="Jerome-Eric-CV.pdf">
-                                <i class="fas fa-download"></i> Download CV
-                            </a>
-                            <a href="cv/Jerome-Eric-CV.pdf" class="btn btn-outline" target="_blank">
-                                <i class="fas fa-eye"></i> View CV
-                            </a>
-                        </div>
-                    </div>
+            <div class="cards">
+                <div class="card tilt reveal">
+                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Training Experience</h3>
+                    <p>What is working, what is not, and what you wish was different in your classes.</p>
                 </div>
-                <div class="about-info">
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h4>Education</h4>
-                        <p>Diploma in Information and Communication Technology</p>
-                        <p>IT Certifications: CompTIA A+, Network+</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <h4>Experience</h4>
-                        <p>3+ Years IT Support</p>
-                        <p>2+ Years Web Development</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h4>Location</h4>
-                        <p>Remote Available</p>
-                        <p>Worldwide Support</p>
-                    </div>
-                    <div class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h4>Availability</h4>
-                        <p>Open to Opportunities</p>
-                        <p>Full-time/Part-time</p>
-                    </div>
+                <div class="card tilt reveal" style="--rd:.12s">
+                    <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Your Trainers</h3>
+                    <p>How well they teach, support and explain, so great teaching gets recognised.</p>
+                </div>
+                <div class="card tilt reveal" style="--rd:.24s">
+                    <div class="card-icon"><i class="fas fa-mountain"></i></div>
+                    <h3>Challenges</h3>
+                    <p>The things that make learning harder, so the programme can fix them for you.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="section skills">
+    <!-- Steps -->
+    <section class="section steps">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My <span class="highlight">Skills</span></h2>
-                <p class="section-subtitle">Technical expertise and competencies</p>
+            <div class="section-header reveal">
+                <h2 class="section-title">How it <span class="highlight">works</span></h2>
+                <p class="section-subtitle">Three steps, about the time of a tea break</p>
             </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-headset"></i> IT Support</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">Hardware Troubleshooting</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="95"></div>
-                            </div>
-                            <span class="skill-percent">95%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Network Administration</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="90"></div>
-                            </div>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">System Administration</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="88"></div>
-                            </div>
-                            <span class="skill-percent">88%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Technical Support</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="92"></div>
-                            </div>
-                            <span class="skill-percent">92%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3><i class="fas fa-code"></i> Development</h3>
-                    <div class="skill-list">
-                        <div class="skill-item">
-                            <span class="skill-name">HTML/CSS</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="95"></div>
-                            </div>
-                            <span class="skill-percent">95%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">JavaScript</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="85"></div>
-                            </div>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Responsive Design</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="90"></div>
-                            </div>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-item">
-                            <span class="skill-name">Git Version Control</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" data-level="85"></div>
-                            </div>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="technical-skills">
-                <h3><i class="fas fa-tools"></i> Technical Proficiencies</h3>
-                <div class="tech-tags">
-                    <span class="tech-tag"><i class="fas fa-desktop"></i> Windows/MacOS</span>
-                    <span class="tech-tag"><i class="fas fa-server"></i> Active Directory</span>
-                    <span class="tech-tag"><i class="fas fa-network-wired"></i> TCP/IP Networking</span>
-                    <span class="tech-tag"><i class="fas fa-shield-alt"></i> Cybersecurity Basics</span>
-                    <span class="tech-tag"><i class="fas fa-database"></i> Database Management</span>
-                    <span class="tech-tag"><i class="fas fa-cloud"></i> Cloud Services</span>
-                    <span class="tech-tag"><i class="fab fa-windows"></i> Microsoft 365</span>
-                    <span class="tech-tag"><i class="fas fa-phone-alt"></i> VoIP Systems</span>
-                </div>
+            <div class="steps-grid reveal">
+                <div class="step"><span class="step-num">1</span><h4>Tap the button</h4><p>Opens the survey instantly on your phone or laptop.</p></div>
+                <div class="step"><span class="step-num">2</span><h4>Answer honestly</h4><p>No names, no right or wrong answers. Just your view.</p></div>
+                <div class="step"><span class="step-num">3</span><h4>Submit and done</h4><p>You have just helped improve training for everyone.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="section services">
+    <!-- Counters -->
+    <section class="section stats">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">My <span class="highlight">Services</span></h2>
-                <p class="section-subtitle">What I can do for you</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <h3>IT Support</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Hardware & Software Troubleshooting</li>
-                        <li><i class="fas fa-check"></i> Network Setup & Maintenance</li>
-                        <li><i class="fas fa-check"></i> System Administration</li>
-                        <li><i class="fas fa-check"></i> Technical Help Desk Support</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Web Development</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Responsive Website Design</li>
-                        <li><i class="fas fa-check"></i> Frontend Development</li>
-                        <li><i class="fas fa-check"></i> Website Maintenance</li>
-                        <li><i class="fas fa-check"></i> Performance Optimization</li>
-                    </ul>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Consultation</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> IT Strategy Planning</li>
-                        <li><i class="fas fa-check"></i> Technology Implementation</li>
-                        <li><i class="fas fa-check"></i> Process Automation</li>
-                        <li><i class="fas fa-check"></i> Digital Transformation</li>
-                    </ul>
-                </div>
+            <div class="stats-grid">
+                <div class="stat reveal"><strong data-count="7" data-suffix=" min">0</strong><span>Max time needed</span></div>
+                <div class="stat reveal"><strong data-count="3">0</strong><span>Topics covered</span></div>
+                <div class="stat reveal"><strong data-count="0">0</strong><span>Wrong answers</span></div>
+                <div class="stat reveal"><strong data-count="100" data-suffix="%">0</strong><span>Anonymous</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section projects">
+    <!-- Final CTA -->
+    <section id="join" class="section cta">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Recent <span class="highlight">Projects</span></h2>
-                <p class="section-subtitle">My work portfolio</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="IT Support Dashboard">
-                    </div>
-                    <div class="project-content">
-                        <h3>IT Support Dashboard</h3>
-                        <p>Internal dashboard for tracking support tickets, system status, and IT assets management.</p>
-                        <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Network Monitor">
-                    </div>
-                    <div class="project-content">
-                        <h3>Network Monitoring Tool</h3>
-                        <p>Web-based tool for monitoring network devices, bandwidth usage, and system alerts.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Flask</span>
-                            <span>JavaScript</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="IT Documentation">
-                    </div>
-                    <div class="project-content">
-                        <h3>IT Documentation Portal</h3>
-                        <p>Knowledge base system for IT procedures, troubleshooting guides, and documentation.</p>
-                        <div class="project-tech">
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
-                            <span>Firebase</span>
-                        </div>
-                    </div>
+            <div class="cta-box reveal">
+                <h2>Ready? Your classmates are counting on you.</h2>
+                <p>Your feedback is the data that makes Purple Skills Klinic better.</p>
+                <div class="hero-buttons center">
+                    <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" class="btn btn-light btn-lg pulse" data-survey data-confetti>
+                        <i class="fas fa-rocket"></i> Take the Survey Now
+                    </a>
+                    <button class="btn btn-ghost btn-lg" id="shareBtn"><i class="fab fa-whatsapp"></i> Share with a friend</button>
+                    <button class="btn btn-ghost btn-lg" id="copyBtn"><i class="fas fa-link"></i> <span>Copy link</span></button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Get In <span class="highlight">Touch</span></h2>
-                <p class="section-subtitle">Let's work together</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p>Available for IT support roles, web development projects, or technical consultation.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>hiirecode@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Phone</h4>
-                                <p>+256 708 724432</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Remote - Available Worldwide</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cv-preview">
-                        <h4><i class="fas fa-file-alt"></i> Quick CV Access</h4>
-                        <a href="cv/Jerome-Eric-CV.pdf" class="btn btn-primary" download>
-                            <i class="fas fa-download"></i> Download Full CV
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Contact Form - Formspree Integration -->
-                <form class="contact-form" id="contactForm" action="https://formspree.io/f/hiirecode@gmail.com" method="POST">
-                    <!-- Hidden fields for Formspree -->
-                    <input type="hidden" name="_to" value="hiirecode@gmail.com">
-                    <input type="hidden" name="_subject" value="New Portfolio Contact Form Submission">
-                    <input type="hidden" name="_replyto" value="email">
-                    <input type="text" name="_gotcha" style="display:none">
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <select name="service" required>
-                            <option value="" disabled selected>Select Service</option>
-                            <option value="it-support">IT Support</option>
-                            <option value="web-dev">Web Development</option>
-                            <option value="consultation">Consultation</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <a href="#" class="footer-logo">Jerome<span>Eric</span></a>
-                    <p>IT Support Specialist & Web Developer</p>
-                    <p>Providing technical solutions that work for people</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#services">Services</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <a href="#services">IT Support</a>
-                    <a href="#services">Web Development</a>
-                    <a href="#services">Consultation</a>
-                    <a href="cv/Jerome-Eric-CV.pdf" download>Download CV</a>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p><i class="fas fa-envelope"></i> hiirecode@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> +256 708 724432</p>
-                    <div class="footer-social">
-                        <a href="https://github.com/hiirejeromeeric" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-codepen"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Jerome Eric. All rights reserved.</p>
-                <p>IT Support & Web Development Portfolio</p>
-            </div>
+            <p>Built with <i class="fas fa-heart"></i> by <strong>Jerome Eric</strong> and the <span id="groupName">Data Analysis</span> team</p>
+            <p class="small">Survey hosted on KoboToolbox · Your answers are anonymous and voluntary · &copy; <span id="currentYear"></span></p>
+            <a href="https://github.com/hiirejeromeeric" target="_blank" rel="noopener" class="footer-link"><i class="fab fa-github"></i> See more of my work</a>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Modal with embedded survey -->
+    <div class="modal" id="modal" aria-hidden="true">
+        <div class="modal-box" role="dialog" aria-label="Survey">
+            <div class="modal-head">
+                <strong>Purple Skills Klinic: Student Survey</strong>
+                <button class="icon-btn" id="closeModal" aria-label="Close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-loading"><i class="fas fa-spinner fa-spin"></i> Loading survey…</div>
+                <iframe id="surveyFrame" title="Student Experience Survey" loading="lazy"></iframe>
+            </div>
+            <div class="modal-foot">
+                Not loading? <a href="https://ee.kobotoolbox.org/x/TGmYaz72" target="_blank" rel="noopener" data-survey>Open it in a new tab</a>
+            </div>
+        </div>
+    </div>
 
+    <canvas id="confetti" aria-hidden="true"></canvas>
     <script src="script.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2993664049190584"
-     crossorigin="anonymous"></script>
 </body>
 </html>
-
